@@ -48,7 +48,7 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: summer-intren-task_production
-  username: summer-intren-task
-  password: <%= ENV['SUMMER-INTREN-TASK2_DATABASE_PASSWORD'] %>
+ <<: *default
+ adapter: postgresql
+ encoding: unicode
+ pool: 5
