@@ -4,10 +4,18 @@
 
 <p><%= @post.id %>:投稿日時:<%= @post.created_at.to_s(:created_at) %>|<%= link_to 'いいね', like_post_path(@post)%>:<%= @post.like %>
 
-  <%= form_for @comment, :url => {:action => :create} do |f| %>
+  <%= form_for @comment, :url =>{ :controller => :comment, :action => :create } do |f| %>
     <div class='field'>
       <%= f.text_field :content %>
       <%= f.hidden_field :post_id, value: @post.id %>
       <%= f.submit %>
     </div>
+<% end %>
+
+<% if @comments.nil?%>
+  <p>コメントはありません。</p>
+<% else %>
+  <% @comments.each do |comment| %>
+    <p><%= comment.content %>  | 投稿日時:<%= comment.created_at.to_s(:created_at) %></p>
+  <% end %>
 <% end %>
