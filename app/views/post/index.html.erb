@@ -1,2 +1,16 @@
 <h1>Mini blog</h1>
-<p>Find me in app/views/post/index.html.erb</p>
+
+<p><%=notice %></p>
+
+<%= form_for @post, :url => {:action => :create} do |f| %>
+    <div class='field'>
+      <%= f.text_field :content %>
+      <%= f.hidden_field :like, value: 0 %>
+      <%= f.submit %>
+    </div>
+<% end %>
+
+<% @posts.reverse_each do |post| %>
+    <p><%= post.id%>:<%= link_to post.content, post_path(post) %></p>
+    <p><%= link_to 'いいね', like_post_path(post)%>:<%= post.like %>| コメント数:<%= %>| 投稿日時:<%= post.created_at.to_s(:created_at) %></p>
+<% end %>

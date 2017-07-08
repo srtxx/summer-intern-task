@@ -1,2 +1,13 @@
-<h1>Post#show</h1>
-<p>Find me in app/views/post/show.html.erb</p>
+<h1>Mini blog</h1>
+<p><%=notice %></p>
+<%= link_to '戻る',post_index_path %>
+
+<p><%= @post.id %>:投稿日時:<%= @post.created_at.to_s(:created_at) %>|<%= link_to 'いいね', like_post_path(@post)%>:<%= @post.like %>
+
+  <%= form_for @comment, :url => {:action => :create} do |f| %>
+    <div class='field'>
+      <%= f.text_field :content %>
+      <%= f.hidden_field :post_id, value: @post.id %>
+      <%= f.submit %>
+    </div>
+<% end %>
