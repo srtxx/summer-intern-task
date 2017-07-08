@@ -6,8 +6,7 @@ class PostController < ApplicationController
   end
 
   def create
-    post = params[:post].permit(:content,:like)
-    @post = Post.create(post)
+    @post = Post.create(post_params)
     redirect_to post_index_path
   end
 
@@ -19,9 +18,14 @@ class PostController < ApplicationController
 
   def like
     @post = Post.find(params[:id])
-    @post.increment(:like,1)
+    @post.increment(:like)
     @post.save
     redirect_to :back, notice: 'いいねしました！'
   end
+
+  private
+    def post_params
+      params.require(:post).permit(:content, :like)
+    end
 
 end
