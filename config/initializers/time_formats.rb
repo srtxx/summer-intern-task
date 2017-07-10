@@ -1,1 +1,1 @@
-Time::DATE_FORMATS[:created_at] = "%Y/%m/%d/ %H:%M:%S"
+Time::DATE_FORMATS[:created_at] = "%Y/%m/%d %H:%M:%S"
